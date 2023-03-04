@@ -11,8 +11,8 @@ private:
 protected:
 	bool validate_date(int day, int month, int year) {
 		if (year < 0) {
+		    cout << "\n\tYear is not valid." << endl;
 			return false;
-			cout << "\n\tYear is not valid." << endl;
 		}
 		//check month
 		if (month >= 1 && month <= 12) {
@@ -26,13 +26,13 @@ protected:
 			else if (day == 29 && month == 2 && (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)))
 				return true;
 			else {
+			    cout << "\n\tDay is not valid." << endl;
 				return false;
-				cout << "\n\tDay is not valid." << endl;
 			}
 		}
 		else {
+		    cout << "\n\tMonth is not valid." << endl;
 			return false;
-			cout << "\n\tMonth is not valid." << endl;
 		}
 	}
 
@@ -54,16 +54,23 @@ public:
 	~Date() {
 		cout << "\n\n\tObject was deleted" << endl;
 	}
+	int Get_day() {
+	    return day;
+	}
+	int Get_month() {
+	    return month;
+	}
+	int Get_year() {
+	    return year;
+	}
 	string Get_date() {
-		string date;
-		date = (to_string(day).length() == 1 ? "0" + to_string(day) : to_string(day)) + "/";
+		string date = (to_string(day).length() == 1 ? "0" + to_string(day) : to_string(day)) + "/";
 		date += (to_string(month).length() == 1 ? "0" + to_string(month) : to_string(month)) + "/";
 		date += to_string(year) + " р.";
 		return date;
 	}
 	string Get_date(int x) {
-		string date;
-		date = to_string(year) + "-";
+		string date = to_string(year) + "-";
 		date += (to_string(month).length() == 1 ? "0" + to_string(month) : to_string(month)) + "-";
 		date += (to_string(day).length() == 1 ? "0" + to_string(day) : to_string(day));
 		return date;
@@ -121,7 +128,7 @@ int main() {
 
 	date.Set_month(2);
 
-	cout << date.Get_date(2) << endl;
+	cout << date.Get_date() << endl;
 
 	date.Set_day(30);
 
