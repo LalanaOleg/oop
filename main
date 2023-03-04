@@ -58,36 +58,45 @@ public:
 		string date;
 		date = (to_string(day).length() == 1 ? "0" + to_string(day) : to_string(day)) + "/";
 		date += (to_string(month).length() == 1 ? "0" + to_string(month) : to_string(month)) + "/";
-		date += to_string(year);
+		date += to_string(year) + " р.";
 		return date;
 	}
-	void Set_day(int day) {
-		if (day < 0 || day>31) {
+	string Get_date(int x) {
+		string date;
+		date = to_string(year) + "-";
+		date += (to_string(month).length() == 1 ? "0" + to_string(month) : to_string(month)) + "-";
+		date += (to_string(day).length() == 1 ? "0" + to_string(day) : to_string(day));
+		return date;
+	}
+	bool Set_day(int day) {
+		if (day < 0 || day > 31) {
 			cout << "\n\tYou typed the wrong month" << endl;
-			return;
+			return false;
 		}
 		if (day > mon[month - 1]) {
 			day = mon[month - 1];
 		}
 		this->day = day;
+		return true;
 	}
-	void Set_month(int month) {
+	bool Set_month(int month) {
 		if (month < 0 || month>12) {
 			cout << "\n\tYou typed the wrong month" << endl;
-			return;
+			return false;
 		}
 		if (day > mon[month-1]) {
 			day = mon[month-1];
 		}
 		this->month = month;
+		return true;
 	}
-	void Set_year(int year) {
+	bool Set_year(int year) {
 		if (year < 0) {
 			cout << "\n\tYou typed the wrong month" << endl;
-			return;
+			return false;
 		}
-
 		this->year = year;
+		return true;
 	}
 	Date& operator--() {
 		day--;
@@ -108,15 +117,15 @@ int main() {
 
 	Date date(31,3,2043);
 
-	cout << date.Get_date() << endl;
+	cout << date.Get_date(2) << endl;
 
 	date.Set_month(2);
 
-	cout << date.Get_date() << endl;
+	cout << date.Get_date(2) << endl;
 
 	date.Set_day(30);
 
-	cout << date.Get_date() << endl;
+	cout << date.Get_date(2) << endl;
 
 	/*for (int i = 0; i < 90; i++)
 	{
